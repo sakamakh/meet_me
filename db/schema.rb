@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_01_075150) do
+ActiveRecord::Schema.define(version: 2023_07_09_160634) do
+
+  create_table "matches", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "home_team_id"
+    t.bigint "away_team_id"
+    t.datetime "start_date_time"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "fk_rails_6a75121a9b"
+    t.index ["home_team_id"], name: "fk_rails_4aed6bdf0d"
+  end
+
+  create_table "teams", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "logo"
+    t.string "stadium_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +47,6 @@ ActiveRecord::Schema.define(version: 2023_07_01_075150) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "matches", "teams", column: "away_team_id"
+  add_foreign_key "matches", "teams", column: "home_team_id"
 end

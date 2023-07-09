@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+teams = [
+  {name: '横浜F・マリノス', stadium_name: '日産スタジアム'},
+  {name: '北海道コンサドーレ札幌', stadium_name: '札幌ドーム'},
+  {name: '鹿島アントラーズ', stadium_name: '茨城県立カシマサッカースタジアム'}
+]
+
+teams.each do |team|
+  Team.create(
+    name: team[:name], 
+    stadium_name: team[:stadium_name], 
+    logo: File.open(Rails.root.join('test', 'fixtures', 'teams', "#{team[:name]}.png"))
+  )
+end  
+
+Match.create(home_team_id: 1, away_team_id: 2,  start_date_time: Time.zone.tomorrow, price: 2000)
