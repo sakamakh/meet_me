@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_09_160634) do
+ActiveRecord::Schema.define(version: 2023_07_16_124527) do
 
   create_table "matches", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "home_team_id"
